@@ -1,0 +1,20 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="navigatingTo" class="bg-gray-100">
+    <ActionBar title="{{ 'history.title' | translate }}" class="bg-green-600 text-white">
+        <NavigationButton text="{{ 'history.back' | translate }}" android.systemIcon="ic_menu_back" />
+    </ActionBar>
+    
+    <GridLayout>
+        <ListView items="{{ tasks }}" class="bg-gray-100" itemTap="{{ onTaskTap }}">
+            <ListView.itemTemplate>
+                <GridLayout columns="auto, *, auto" rows="auto, auto" class="p-4 bg-white m-2 rounded-lg shadow-sm">
+                    <Image src="{{ '~/assets/images/' + task_type + '.png' }}" width="40" height="40" class="mr-2" rowSpan="2" col="0" />
+                    <Label text="{{ taskName }}" class="font-medium" row="0" col="1" />
+                    <Label text="{{ formattedDate }}" class="text-gray-500" row="1" col="1" />
+                    <Label text="{{ formattedDuration }}" class="text-gray-500 text-right" row="0" col="2" />
+                </GridLayout>
+            </ListView.itemTemplate>
+        </ListView>
+        <Label text="{{ 'history.noTasks' | translate }}" class="text-center text-gray-500 p-4" 
+               visibility="{{ tasks.length ? 'collapsed' : 'visible' }}" />
+    </GridLayout>
+</Page>
